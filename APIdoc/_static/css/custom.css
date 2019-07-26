@@ -1,0 +1,79 @@
+/* CSS Document for STACK docs */
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+.one-page-logo .logo-image img {
+  height: 25px;
+}
+
+.one-page-search {
+  border-top: 1px solid #eaedf1;
+  position: relative;
+}
+.one-page-search:after {
+  color: #999;
+  content: "\e618";
+  font-family: 'Pe-icon-7-stroke';
+  font-size: 1.2em;
+  left: 10px;
+  position: absolute;
+  top: 18px;
+}
+.one-page-search input[type=text] {
+  border: 0;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 15px 10px 15px 35px;
+  width: 100%;
+}
+
+.one-page-nav ul li ul li a {
+  font-size: 0.8em;
+  padding: 7px 15px 7px 45px;
+}
+.one-page-nav ul li ul li ul li a {
+  font-size: 0.8em;
+  padding: 7px 15px 7px 60px;
+}
+
+.category-info h4.category-title {
+  font-size: 2em;
+  margin-top: 40px;
+}
+.category-info h5.category-title {
+  font-size: 1.5em;
+  margin-top: 40px;
+}
+.category-info h6 {
+  font-size: 1em;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+.category-info .table > thead > tr > th {
+  color: #808488;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+.category-info .table > tbody > tr > th, 
+.category-info .table > tbody > tr > td {
+  font-size: 0.9em;
+}
+
+.category-info code {
+  font-size: 0.85em;
+}

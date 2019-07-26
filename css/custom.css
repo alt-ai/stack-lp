@@ -1,0 +1,103 @@
+/* CSS Document for STACK */
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* header */
+.header {
+  background-color: rgba(255,255,255,0.7);
+}
+
+.header .logo-image img {
+  height: 25px;
+  margin-top: 10px;
+}
+.header .page-title {
+  font-size: 4em;
+}
+
+/* header-back */
+.header-back h1.page-title {
+  font-size: 4em;
+}
+.header-back .button {
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+/* content */
+.promo-description {
+  max-width: 100%;
+}
+
+.document-button {
+  padding: 12px 20px 10px;
+}
+.document-button i {
+  position: relative;
+  top: -2px;
+}
+
+/* sample_application */
+#sample_application {
+  padding-bottom: 80px;
+}
+#sample_application img {
+  max-width: 300px;
+}
+
+/* Featured Boxes */
+ul.featured-boxes {
+  display: flex;
+}
+ul.featured-boxes li {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+@media (max-width: 768px) {
+  
+  ul.featured-boxes {
+    display: block;
+  }
+  
+}
+
+/* call-to-action */
+.call-to-action-title {
+  font-size: 2.8em;
+}
+
+/* footer */
+.footer .logo-image img {
+  height: 20px;
+}
+.footer-extended-menu {
+  display: flex;
+  justify-content: center;
+}
+ul.footer-extended-menu-list li {
+  float: left;
+  padding: 0 2em;
+}
+
+@media (max-width: 768px) {
+  
+  .scroll-top {
+    margin-left: -20px;
+  }
+  
+}
+
+

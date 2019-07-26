@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Page title -->
+	<title>STACK - API doc</title>
+	<!-- Page description -->
+	<meta name="description" content="">
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Favicon  -->
+	<link rel="icon" type="image/png" href="../img/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="../img/favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../img/favicons/favicon-96x96.png" sizes="96x96">
+	<link rel="apple-touch-icon" sizes="57x57" href="../img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../img/favicons/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../img/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../img/favicons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../img/favicons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../img/favicons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../img/favicons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../img/favicons/apple-touch-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../img/favicons/apple-touch-icon-180x180.png">
+	<!-- Include StyleSheets -->
+	<link rel="stylesheet" href="_static/css/style.min.css">
+	<link rel="stylesheet" href="_static/css/custom.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300,400,500,700,900&subset=japanese">
+	<script src="../js/modernizr.js"></script>
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script type="text/javascript" src="_static/jquery.js"></script>
+  <script type="text/javascript" src="_static/underscore.js"></script>
+  <script type="text/javascript" src="_static/doctools.js"></script>
+  <script type="text/javascript" src="_static/language_data.js"></script>
+  <script type="text/javascript" src="_static/translations.js"></script>
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="index" title="索引" href="genindex.html" />
+  <link rel="search" title="検索" href="search.html" />
+  <link rel="next" title="本ドキュメントについて" href="api.html" /> 
+</head>
+
+<body class="">
+	<!--[if lt IE 8]>
+	    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- Preloader: uncomment this if you want to show a smooth preloader while the page is loading. Don't forget to add the 'js-preload-me' class on the <body> tag. -->
+	<!-- <div class="preloader js-preloader"><div class="preloader-animation"></div></div>
+ -->
+	<!-- End of Preloader -->
+	<div class="page js-page ">
+		<!-- One Page Sidebar -->
+		<div class="one-page-sidebar">
+			<!-- One Page Sidebar Header -->
+			<div class="one-page-sidebar-header">
+				<!-- One Page Logo -->
+				<div class="one-page-logo">
+					<!-- Logo Image -->
+					<a href="index.html" class="logo-image ">
+						<img src="../img/logos/logo.svg" alt="STACK">
+					</a>
+					<!-- End of Logo Image -->
+				</div>
+				<!-- End of One Page Logo -->
+        <div role="search" class="one-page-search">
+          <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+            <input type="text" name="q" placeholder="Search docs" />
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </div>
+			</div>
+			<!-- End of One Page Sidebar Header -->
+			<!-- One Page Nav -->
+			<div class="one-page-nav-wrapper js-custom-scrollbar">
+				<ul class="one-page-nav js-one-page-nav js-menu-vertical" data-prepend-to=".js-prepend-mobile-menu">
+					<li class="is-active">
+						<a href="#about-doc" class="">本ドキュメントについて</a>
+            <ul>
+              <li class="">
+                <a href="#api" class="">各API仕様</a>
+                <ul>
+                  <li>
+                    <a href="#ethereum">Ethereum</a>
+                    <ul>
+                      <li>
+                        <a href="#post-api-v1-eth-setkeyvalue">POST /api/v1/Eth/setKeyValue</a>
+                      </li>
+                      <li>
+                        <a href="#get-api-v1-eth-getkeyvalue">GET /api/v1/Eth/getKeyValue</a>
+                      </li>
+                      <li>
+                        <a href="#get-api-v1-eth-getkeys">GET /api/v1/Eth/getKeys</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#ipfs">IPFS</a>
+                    <ul>
+                      <li>
+                        <a href="#post-api-v1-ipfs-upload">POST /api/v1/IPFS/upload</a>
+                      </li>
+                      <li>
+                        <a href="#get-api-v1-ipfs-download">GET /api/v1/IPFS/download</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#offchain">OffChain</a>
+                    <ul>
+                      <li>
+                        <a href="#post-api-v1-offchain-setkeyvalue">POST /api/v1/OffChain/setKeyValue</a>
+                      </li>
+                      <li>
+                        <a href="#get-api-v1-offchain-getkeyvalue">GET /api/v1/OffChain/getKeyValue</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="">
+                <a href="#error-code">エラーコードと応答</a>
+              </li>
+            </ul>
+          </li>
+				</ul>
+			</div>
+			<!-- End of One Page Nav -->
+			<!-- One Page Sidebar Footer -->
+			<footer class="one-page-sidebar-footer">
+				<a href="https://alt.ai/" target="_blank">alt Inc.</a>, all rights reserved. 2019 © </footer>
+			<!-- End of One Page Sidebar Footer -->
+		</div>
+		<!-- End of One Page Sidebar -->
+		<!-- One Page Content -->
+		<div class="one-page-content">
+			<!-- Header -->
+			<header class="header large header-one-page ">
+				<div class="container-fluid container-spaced">
+					<div class="row">
+						<div class="col-md-3 col-sm-6 col-xs-5">
+							<div class="visible-sm-block visible-xs-block">
+								<!-- Logo Image -->
+								<a href="index.html" class="logo-image">
+									<img src="../img/logos/logo.svg" alt="STACK">
+								</a>
+								<!-- End of Logo Image -->
+							</div>
+						</div>
+						<div class="col-md-9 col-sm-6 col-xs-7">
+							<!-- Menu -->
+							<nav class="right helper">
+                <ul class="menu sf-menu js-menu">
+                  <li>
+                    <a href="../index.html">Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="../index.html#about">Alt Stack とは</a>
+                  </li>
+                  <li>
+                    <a href="index.html">APIリファレンス</a>
+                  </li>
+                  <li>
+                    <a href="../SDKdoc/index.html">SDKリファレンス</a>
+                  </li>
+                  <li>
+                    <a href="#">ダウンロード</a>
+                  </li>
+                </ul>
+              </nav>
+							<!-- End of Menu -->
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- End of Header -->
+			<div id="content">
+				<div class="container-fluid container-spaced">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="js-prepend-mobile-menu">
+								<!-- The mobile menu will be prepended here -->
+							</div>
+							<!-- Category Info -->
+							<div class="category-info helper pt0" id="about-doc">
+								<h3 class="category-title">本ドキュメントについて
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#about-doc">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h3>
+								<p class="category-content">stack REST APIを使用することで、IPFSやEthereumへのデータ書き込み及び読み込み等を行うことができます。</p>
+                <p class="category-content">本ドキュメントではstack REST APIが提供するAPIの仕様について記述します。</p>
+							</div>
+							<!-- End of Caregory Info -->
+							<!-- Category Info -->
+							<div class="category-info " id="api">
+								<h3 class="category-title">各API仕様
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#api">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h3>
+								<h4 class="category-title" id="ethereum">Ethereum
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#ethereum">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h4>
+								<h5 class="category-title" id="post-api-v1-eth-setkeyvalue">POST /api/v1/Eth/setKeyValue
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#post-api-v1-eth-setkeyvalue">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">データをEthereumへ保存します。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">POST</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/Eth/setKeyValue</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">key</th>
+                        <td>保存するデータに対応するkey</td>
+                        <td></td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">sig</th>
+                        <td>電子署名データ</td>
+                        <td>Ethereum署名アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">signer</th>
+                        <td>署名者のEthereumアドレス</td>
+                        <td>Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">value</th>
+                        <td>IPFSハッシュ</td>
+                        <td>IPFSにアップロードしたデータのハッシュ</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>sigパラメータについて</h6>
+                <p class="category-content">下記はEthereum署名アルゴリズムによる電子署名のサンプルコードです</p>
+                <h6>generatesSignSample.js:</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">const ethUtil = require("ethereumjs-util");
+  const ethAbi = require('ethereumjs-abi');
+
+  const msgHash = ethAbi.soliditySHA3(["string","string"], [key, value]);
+  const privKey = ethUtil.toBuffer('0x' + privateKey);
+  const vrs = ethUtil.ecsign(msgHash, privKey);
+
+  const sig = ethUtil.toRpcSig(vrs.v, vrs.r, vrs.s);
+  </code></pre> </div>
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X POST "http://localhost:3000/api/v1/Eth/setKeyValue" \
+   -H "accept: application/json" \
+   -H "Content-Type: application/json" \
+   -d "{ \"sig\": \"0x398218f9582f9d4daba34a36ffef7f0115ac6b8e75466038e98a8d2614e230c5564bbe9bebe3c7dbe83080a04b1e83f1a3286899aa117e7e32c82741ab90d2fd1b\",\"signer\": \"bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57\",\"key\": \"foo\",\"value\": \"QmPbpUdgdmTwQ4azWBJSZUy1ZcrMYSRhapBzwKURDdNbJL\"}"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"transactionHash":"0xf5f708aec6fe076145ea04ad2c2848e5f38a9379db6e7468724b42f95a179f1e"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">transactionHash</th>
+                        <td>データ保存時のトランザクションハッシュ</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+								<h5 class="category-title" id="get-api-v1-eth-getkeyvalue">GET /api/v1/Eth/getKeyValue
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#get-api-v1-eth-getkeyvalue">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">指定したアドレスとkeyに対応するデータををEthereumより取得します。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">GET</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/Eth/getKeyValue</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">owner</th>
+                        <td>Ethereumアドレス</td>
+                        <td>Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">key</th>
+                        <td>保存するデータに対応するkey</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X GET "http://localhost:3000/api/v1/Eth/getKeyValue?owner=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57&key=foo"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"result":"QmbUMyPu7MjQxka6PUoK9U9aUJZHt4ffNRsEdaKwWxz55Y"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">result</th>
+                        <td>指定されたアドレスとkeyに対応するデータ</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h5 class="category-title" id="get-api-v1-eth-getkeys">GET /api/v1/Eth/getKeys
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#get-api-v1-eth-getkeys">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">指定したアドレスが生成元となるEthereumのkeyを全て取得します。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">GET</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/Eth/getKeys</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">owner</th>
+                        <td>Ethereumアドレス</td>
+                        <td>Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X GET "http://localhost:3000/api/v1/Eth/getKeys?owner=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"result":["foo","bar"]}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">result</th>
+                        <td>指定したアドレスへ登録したkeyの配列</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                
+                <h4 class="category-title" id="ipfs">IPFS
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#ipfs">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h4>
+								<h5 class="category-title" id="post-api-v1-ipfs-upload">POST /api/v1/IPFS/upload
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#post-api-v1-ipfs-upload">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">データをIPFSへアップロードし、データのハッシュを取得します。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">POST</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/IPFS/upload</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">data</th>
+                        <td>IPFSへアップロードするデータを指定します。</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X POST "http://localhost:3000/api/v1/IPFS/upload" \
+   -H "accept: application/json" \
+   -H "Content-Type: application/json" \
+   -d "{ \"data\": \"9f452db79fc048c1a0305dded6006c3c04002e593c54e2618cf68d89d9c863162df37406454a9a501dba74182074e053a28f2e366091a4625c9c9492a5265980585c333e020c490cc7f3290abf4a6292c70fa4bf22d7284d2121195200c656f2a7567e0b86bba068e06400de11e070ee6c7bd2000acd7c5bbf34cfa19e50f2bc55\"}"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"hash":"QmeeNPdUf5ohHeya3hvvwg8CZRWLs1zHTkETd7U9wA4Li6"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">hash</th>
+                        <td>アップロードしたデータのハッシュ</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+								<h5 class="category-title" id="get-api-v1-ipfs-download">GET /api/v1/IPFS/download
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#get-api-v1-ipfs-download">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">ハッシュを指定し、IPFSからデータを取得します。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">GET</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/IPFS/download</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">hash</th>
+                        <td>取得するデータのハッシュ</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X GET "http://localhost:3000/api/v1/IPFS/download?hash=QmPbpUdgdmTwQ4azWBJSZUy1ZcrMYSRhapBzwKURDdNbJL"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"result":"9c9236b89e453c313bcd9266d511421504a5b7394e874c28b1befcedac7352a55163e102562041cebc96ef163198198737620a195374d7c804e3d6dbeedee778d1473212bdcad8a898ed5b75c352f59217f8ad7c8f108f1b4edd112e9ab2a66a9698fc86fde581d9e2f19fd51a5c554807820cca9cf13f856de8f511d82afab27d"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">result</th>
+                        <td>取得したデータ</td>
+                        <td>指定したハッシュに対応するデータが取得されます。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                
+                <h4 class="category-title" id="offchain">OffChain
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#offchain">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h4>
+								<h5 class="category-title" id="post-api-v1-offchain-setkeyvalue">POST /api/v1/OffChain/setKeyValue
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#post-api-v1-offchain-setkeyvalue">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">指定したデータをRedisを利用してメモリに保存します。 IPFSへ保存したデータがIPFSから取得できるまでには、ある程度の時間が必要があるため、その間のデータ取得のために利用されます。 データはアドレスとkeyから生成された、Redis用のkeyに紐づく値として保存されます。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">POST</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/OffChain/setKeyValue</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">address</th>
+                        <td>Ethereumアドレス</td>
+                        <td>Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">expire</th>
+                        <td>Redisに保存する時間</td>
+                        <td>単位は秒。</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">key</th>
+                        <td>保存するデータに対応するkey</td>
+                        <td>実際にはkeyとaddressから生成された値がRedis用のkeyとして使用されます。</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">value</th>
+                        <td>保存するデータ</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X POST "http://localhost:3000/api/v1/OffChain/setKeyValue" \
+   -H "accept: application/json" \
+   -H "Content-Type: application/json" \
+   -d"{\"address\":\"bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57\",\"expire\":\"300\",\"key\":\"foo\",\"value\":\"9f452db79fc048c1a0305dded6006c3c04002e593c54e2618cf68d89d9c863162df37406454a9a501dba74182074e053a28f2e366091a4625c9c9492a5265980585c333e020c490cc7f3290abf4a6292c70fa4bf22d7284d2121195200c656f2a7567e0b86bba068e06400de11e070ee6c7bd2000acd7c5bbf34cfa19e50f2bc55\"}"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"result":"set ipfs data to offChain"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">result</th>
+                        <td>set ipfs data to offChain</td>
+                        <td>必ず左記の固定文言を返します。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+								<h5 class="category-title" id="get-api-v1-offchain-getkeyvalue">GET /api/v1/OffChain/getKeyValue
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#get-api-v1-offchain-getkeyvalue">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h5>
+                <p class="category-content">指定したアドレスとkeyを元にRedisからデータの取得処理を行います。</p>
+                <h6>HTTPメソッド</h6>
+                <p class="category-content">GET</p>
+                <h6>エンドポイント</h6>
+                <p class="category-content">/api/v1/OffChain/getKeyValue</p>
+                <h6>パラメータ</h6>
+                <p class="category-content">全てのパラメータは必須パラメータです。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>パラメータ名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">address</th>
+                        <td>Ethereumアドレス</td>
+                        <td>Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">key</th>
+                        <td>取得するデータに対応するkey</td>
+                        <td>実際にはkeyとaddressから生成された値がRedis用のkeyとして使用されます。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                <h6>curlによるAPIリクエストのサンプル</h6>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">$ curl -X GET "http://localhost:3000/api/v1/OffChain/getKeyValue?address=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57&key=foo"
+  </code></pre> </div>
+                <h6>レスポンス形式：json</h6>
+                <p class="category-content">レスポンス例:</p>
+                <div class="code-highlight " data-label="">
+                  <span class="js-copy-to-clipboard copy-code">copy</span> <pre><code class="language-markup js-code">{"result":"b4b95e903934d579ba5afd7cec97fe560451d52aea8f9cfcf7f77daefe51f299bdb43abe098e3b05f3838831a61ab5b0d515a4d5718a26a5c3a7e11c420a34e6d77736ddde8548da295a90da4c3ae1117547a28f6134df2f3d3212e78e5206f5d28b5a6c0f74b73154ca959b47c7b9184ab82f26cf49b3a5f0baeaba88b3c559a4"}
+  </code></pre> </div>
+                <h6>取得可能なフィールド</h6>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>フィールド名</th>
+                        <th>内容</th>
+                        <th>補足</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">result</th>
+                        <td>取得したデータ</td>
+                        <td>指定したkeyに対応するデータが取得されます。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+                
+							</div>
+							<!-- End of Caregory Info -->
+              
+              <!-- Category Info -->
+							<div class="category-info " id="error-code">
+								<h3 class="category-title">エラーコードと応答
+									<!-- Fragment Identifier -->
+									<a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#error-code">
+										<i class="fa fa-link"></i>
+									</a>
+									<!-- End of Fragment Identifier -->
+								</h3>
+								<p class="category-content">一部APIを除き、APIに対するリクエストについては、以下の全てのHTTPステータスコードが返ります。</p>
+                <!-- Table -->
+                <div class="table-responsive">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th>コード</th>
+                        <th>テキスト</th>
+                        <th>説明</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="">
+                        <th scope="row">200</th>
+                        <td>OK</td>
+                        <td>成功</td>
+                      </tr>
+                      <tr class="">
+                        <th scope="row">500</th>
+                        <td>ERROR</td>
+                        <td>何かの理由によってエラーが発生しました。</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- End of Table -->
+							</div>
+							<!-- End of Caregory Info -->						
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of One Page Content -->
+	</div>
+	<script src="../js/all.js"></script>
+	<script src="../js/custom.js"></script>
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<!-- 
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>
+     -->
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+============================
+本ドキュメントについて
+============================
+
+stack REST APIを使用することで、IPFSやEthereumへのデータ書き込み及び読み込み等を行うことができます。
+
+本ドキュメントではstack REST APIが提供するAPIの仕様について記述します。
+
+
+各API仕様
+==============================
+
+Ethereum
+--------------
+
+POST /api/v1/Eth/setKeyValue
+````````````````````````````````````
+
+データをEthereumへ保存します。
+
+**HTTPメソッド**
+
+POST
+
+
+**エンドポイント**
+
+/api/v1/Eth/setKeyValue
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table:: 
+    :header: "パラメータ名", "内容", "補足"
+
+    "key", 保存するデータに対応するkey, ""
+    "sig", 電子署名データ, "Ethereum署名アルゴリズムによる16進数文字列。「0x」の符号付き"
+    "signer", 署名者のEthereumアドレス, "Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き"
+    "value", IPFSハッシュ, "IPFSにアップロードしたデータのハッシュ"
+
+**sigパラメータについて**
+
+下記はEthereum署名アルゴリズムによる電子署名のサンプルコードです
+
+generatesSignSample.js::
+
+  const ethUtil = require("ethereumjs-util");
+  const ethAbi = require('ethereumjs-abi');
+
+  const msgHash = ethAbi.soliditySHA3(["string","string"], [key, value]);
+  const privKey = ethUtil.toBuffer('0x' + privateKey);
+  const vrs = ethUtil.ecsign(msgHash, privKey);
+
+  const sig = ethUtil.toRpcSig(vrs.v, vrs.r, vrs.s);
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X POST "http://localhost:3000/api/v1/Eth/setKeyValue" \
+     -H "accept: application/json" \
+     -H "Content-Type: application/json" \
+     -d "{ \"sig\": \"0x398218f9582f9d4daba34a36ffef7f0115ac6b8e75466038e98a8d2614e230c5564bbe9bebe3c7dbe83080a04b1e83f1a3286899aa117e7e32c82741ab90d2fd1b\",\"signer\": \"bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57\",\"key\": \"foo\",\"value\": \"QmPbpUdgdmTwQ4azWBJSZUy1ZcrMYSRhapBzwKURDdNbJL\"}"
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+{"transactionHash":"0xf5f708aec6fe076145ea04ad2c2848e5f38a9379db6e7468724b42f95a179f1e"}
+
+
+**取得可能なフィールド**
+
+.. csv-table:: 
+    :header: "フィールド名", "内容", "補足"
+
+    "transactionHash", データ保存時のトランザクションハッシュ,""
+
+GET /api/v1/Eth/getKeyValue
+````````````````````````````````````
+
+指定したアドレスとkeyに対応するデータををEthereumより取得します。
+
+**HTTPメソッド**
+
+GET
+
+**エンドポイント**
+
+/api/v1/Eth/getKeyValue
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table:: 
+    :header: "パラメータ名", "内容", "補足"
+
+    "owner", Ethereumアドレス, "Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き"
+    "key", 保存するデータに対応するkey, ""
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X GET "http://localhost:3000/api/v1/Eth/getKeyValue?owner=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57&key=foo"
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+  {"result":"QmbUMyPu7MjQxka6PUoK9U9aUJZHt4ffNRsEdaKwWxz55Y"}
+
+**取得可能なフィールド**
+
+
+.. csv-table:: 
+    :header: "フィールド名", "内容", "補足"
+
+    "result", 指定されたアドレスとkeyに対応するデータ,""
+
+
+GET /api/v1/Eth/getKeys
+````````````````````````````````````
+指定したアドレスが生成元となるEthereumのkeyを全て取得します。
+
+**HTTPメソッド**
+
+GET
+
+**エンドポイント**
+
+/api/v1/Eth/getKeys
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table::
+    :header: "パラメータ名", "内容", "補足"
+
+    "owner", Ethereumアドレス, "Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き"
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X GET "http://localhost:3000/api/v1/Eth/getKeys?owner=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57"
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+  {"result":["foo","bar"]}
+
+**取得可能なフィールド**
+
+
+.. csv-table:: 
+    :header: "フィールド名", "内容", "補足"
+
+    "result", 指定したアドレスへ登録したkeyの配列, ""
+
+
+
+IPFS
+----------------------
+
+
+
+POST /api/v1/IPFS/upload
+```````````````````````````````````````
+
+データをIPFSへアップロードし、データのハッシュを取得します。
+
+**HTTPメソッド**
+POST
+
+
+**エンドポイント**
+
+/api/v1/IPFS/upload
+
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table::
+    :header: "パラメータ名", "内容", "補足"
+
+    "data", IPFSへアップロードするデータを指定します。, ""
+
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X POST "http://localhost:3000/api/v1/IPFS/upload" \
+     -H "accept: application/json" \
+     -H "Content-Type: application/json" \
+     -d "{ \"data\": \"9f452db79fc048c1a0305dded6006c3c04002e593c54e2618cf68d89d9c863162df37406454a9a501dba74182074e053a28f2e366091a4625c9c9492a5265980585c333e020c490cc7f3290abf4a6292c70fa4bf22d7284d2121195200c656f2a7567e0b86bba068e06400de11e070ee6c7bd2000acd7c5bbf34cfa19e50f2bc55\"}"
+
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+  {"hash":"QmeeNPdUf5ohHeya3hvvwg8CZRWLs1zHTkETd7U9wA4Li6"}
+
+
+**取得可能なフィールド**
+
+
+.. csv-table::
+    :header: "フィールド名", "内容", "補足"
+
+    "hash", アップロードしたデータのハッシュ, ""
+
+
+
+GET /api/v1/IPFS/download
+```````````````````````````````````````
+
+ハッシュを指定し、IPFSからデータを取得します。
+
+**HTTPメソッド**
+
+GET
+
+**エンドポイント**
+
+/api/v1/IPFS/download
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+
+
+.. csv-table::
+    :header: "パラメータ名", "内容", "補足"
+
+    "hash", 取得するデータのハッシュ, ""
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X GET "http://localhost:3000/api/v1/IPFS/download?hash=QmPbpUdgdmTwQ4azWBJSZUy1ZcrMYSRhapBzwKURDdNbJL"
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+  {"result":"9c9236b89e453c313bcd9266d511421504a5b7394e874c28b1befcedac7352a55163e102562041cebc96ef163198198737620a195374d7c804e3d6dbeedee778d1473212bdcad8a898ed5b75c352f59217f8ad7c8f108f1b4edd112e9ab2a66a9698fc86fde581d9e2f19fd51a5c554807820cca9cf13f856de8f511d82afab27d"}
+
+**取得可能なフィールド**
+
+.. csv-table::
+    :header: "フィールド名", "内容", "補足"
+
+    "result", 取得したデータ, "指定したハッシュに対応するデータが取得されます。"
+
+
+
+
+OffChain
+---------------
+
+
+POST /api/v1/OffChain/setKeyValue
+```````````````````````````````````````
+
+指定したデータをRedisを利用してメモリに保存します。
+IPFSへ保存したデータがIPFSから取得できるまでには、ある程度の時間が必要があるため、その間のデータ取得のために利用されます。
+データはアドレスとkeyから生成された、Redis用のkeyに紐づく値として保存されます。
+
+**HTTPメソッド**
+
+POST
+
+
+**エンドポイント**
+
+/api/v1/OffChain/setKeyValue
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table::
+    :header: "パラメータ名", "内容", "補足"
+
+    "address", Ethereumアドレス, "Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き"
+    "expire", Redisに保存する時間, "単位は秒。"
+    "key", 保存するデータに対応するkey, "実際にはkeyとaddressから生成された値がRedis用のkeyとして使用されます。"
+    "value", 保存するデータ, ""
+
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X POST "http://localhost:3000/api/v1/OffChain/setKeyValue" \
+     -H "accept: application/json" \
+     -H "Content-Type: application/json" \
+     -d"{\"address\":\"bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57\",\"expire\":\"300\",\"key\":\"foo\",\"value\":\"9f452db79fc048c1a0305dded6006c3c04002e593c54e2618cf68d89d9c863162df37406454a9a501dba74182074e053a28f2e366091a4625c9c9492a5265980585c333e020c490cc7f3290abf4a6292c70fa4bf22d7284d2121195200c656f2a7567e0b86bba068e06400de11e070ee6c7bd2000acd7c5bbf34cfa19e50f2bc55\"}"
+
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+  {"result":"set ipfs data to offChain"}
+
+
+**取得可能なフィールド**
+
+.. csv-table::
+    :header: "フィールド名", "内容", "補足"
+
+    "result", "set ipfs data to offChain", "必ず左記の固定文言を返します。"
+
+GET /api/v1/OffChain/getKeyValue
+```````````````````````````````````````
+
+指定したアドレスとkeyを元にRedisからデータの取得処理を行います。
+
+**HTTPメソッド**
+
+GET
+
+**エンドポイント**
+
+/api/v1/OffChain/getKeyValue
+
+**パラメータ**
+
+全てのパラメータは必須パラメータです。
+
+.. csv-table::
+    :header: "パラメータ名", "内容", "補足"
+
+    "address", Ethereumアドレス, "Ethereumアドレス生成アルゴリズムによる16進数文字列。「0x」の符号付き"
+    "key", 取得するデータに対応するkey, "実際にはkeyとaddressから生成された値がRedis用のkeyとして使用されます。"
+
+
+**curlによるAPIリクエストのサンプル**
+
+::
+
+  $ curl -X GET "http://localhost:3000/api/v1/OffChain/getKeyValue?address=bf5b191140b38e34b9e8d2ebe3e1180c0a93ab57&key=foo"
+
+
+
+**レスポンス形式：json**
+
+レスポンス例::
+
+{"result":"b4b95e903934d579ba5afd7cec97fe560451d52aea8f9cfcf7f77daefe51f299bdb43abe098e3b05f3838831a61ab5b0d515a4d5718a26a5c3a7e11c420a34e6d77736ddde8548da295a90da4c3ae1117547a28f6134df2f3d3212e78e5206f5d28b5a6c0f74b73154ca959b47c7b9184ab82f26cf49b3a5f0baeaba88b3c559a4"}
+
+
+**取得可能なフィールド**
+
+
+.. csv-table::
+    :header: "フィールド名", "内容", "補足"
+
+    "result", 取得したデータ, "指定したkeyに対応するデータが取得されます。"
+
+
+エラーコードと応答
+=================================
+
+一部APIを除き、APIに対するリクエストについては、以下の全てのHTTPステータスコードが返ります。
+
+
+=======    ===============      ===================
+コード        テキスト                説明
+=======    ===============      ===================
+200        OK                   成功
+500        ERROR                何かの理由によってエラーが発生しました。
+=======    ===============      ===================
+
+
+.. csv-table::
+    :header: "コード", "テキスト", "説明"
+
+    "200", OK, "成功"
+    "500", ERROR, "何かの理由によってエラーが発生しました。"
+
